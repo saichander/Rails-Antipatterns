@@ -1,0 +1,7 @@
+class Invoice < ActiveRecord::Base
+  belongs_to :user
+end
+
+<%= @invoice.user.name %>
+<%= @invoice.user.address %>
+<%= @invoice.user.cellphone %>
