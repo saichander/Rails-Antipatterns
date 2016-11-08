@@ -1,5 +1,10 @@
 # app/models/order.rb
 class Order < ActiveRecord::Base
+  delegate :to_xml, :to_json, :to_pdf, :to_csv, :to => 'converter'
+  def converter
+    OrderConverter.new(self)
+  end
+
   def self.find_purchased
     # ...
   end
@@ -23,6 +28,9 @@ class Order < ActiveRecord::Base
   def self.simple_search(terms)
     # ...
   end
+end
+
+Class OrderConverter < ActiveRecord::Base
 
   def to_xml
     # ...

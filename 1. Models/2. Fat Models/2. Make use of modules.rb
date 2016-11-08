@@ -1,5 +1,10 @@
 # app/models/order.rb
 class Order < ActiveRecord::Base
+  extend FindOrders
+  extend SearchOrders
+  include OrderConversion
+end
+module FindOrders
   def self.find_purchased
     # ...
   end
@@ -15,7 +20,9 @@ class Order < ActiveRecord::Base
   def self.find_waiting_for_sign_off
     # ...
   end
+end
 
+module SearchOrders
   def self.advanced_search(fields, options = {})
     # ...
   end
@@ -23,7 +30,9 @@ class Order < ActiveRecord::Base
   def self.simple_search(terms)
     # ...
   end
+end
 
+module OrderConversion
   def to_xml
     # ...
   end
